@@ -1,11 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>EPA Feedback Generator</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -34,7 +37,7 @@ header p {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1050px;
     margin: auto;
     padding: 20px;
 }
@@ -49,6 +52,7 @@ header p {
 
 h2 {
     margin-top: 0;
+    font-size: 20px;
 }
 
 label {
@@ -70,7 +74,7 @@ textarea {
 }
 
 textarea {
-    min-height: 100px;
+    min-height: 90px;
     resize: vertical;
 }
 
@@ -86,6 +90,10 @@ textarea {
     margin-bottom: 20px;
 }
 
+.mode button {
+    flex: 1;
+}
+
 button {
     border: 0;
     border-radius: 7px;
@@ -93,10 +101,6 @@ button {
     font-weight: bold;
     cursor: pointer;
     background: #e4e7eb;
-}
-
-.mode button {
-    flex: 1;
 }
 
 .mode button.active,
@@ -120,7 +124,7 @@ button {
 }
 
 .ksb-list {
-    max-height: 450px;
+    max-height: 400px;
     overflow-y: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -150,8 +154,8 @@ button {
     border: 1px solid #ddd;
     padding: 18px;
     border-radius: 8px;
-    line-height: 1.6;
-    min-height: 150px;
+    line-height: 1.65;
+    min-height: 180px;
     white-space: pre-wrap;
 }
 
@@ -160,167 +164,412 @@ button {
     color: #555;
 }
 
-@media(max-width:700px) {
+.hint {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+
+@media(max-width:800px) {
+
     .grid,
     .ksb-list {
         grid-template-columns: 1fr;
     }
 
+}
+
+@media(max-width:600px) {
+
     .mode {
         flex-direction: column;
     }
+
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>EPA Feedback Generator</h1>
-    <p>ST0264 Carpentry and Joinery – Site Carpenter</p>
+
+<h1>EPA Feedback Generator</h1>
+
+<p>
+ST0264 Carpentry and Joinery – Site Carpenter
+</p>
+
 </header>
 
+
 <div class="container">
+
+
+<!-- MAIN INFORMATION -->
 
 <div class="card">
 
 <div class="mode">
-    <button id="observationMode" class="active" type="button">
-        Observation
-    </button>
 
-    <button id="feedbackMode" type="button">
-        Final Feedback
-    </button>
+<button
+id="observationMode"
+class="active"
+type="button">
+
+Observation
+
+</button>
+
+<button
+id="feedbackMode"
+type="button">
+
+Final Feedback
+
+</button>
+
 </div>
 
+
 <label>Apprentice name</label>
-<input id="name" placeholder="e.g. Benjamin Regan">
+
+<input
+id="name"
+placeholder="e.g. Benjamin Regan">
+
 
 <label>How should they be referred to?</label>
+
 <select id="pronoun">
-    <option value="name">Use their name</option>
-    <option value="he">He / him</option>
-    <option value="she">She / her</option>
-    <option value="they">They / them</option>
+
+<option value="name">
+Use their name
+</option>
+
+<option value="he">
+He / him
+</option>
+
+<option value="she">
+She / her
+</option>
+
+<option value="they">
+They / them
+</option>
+
 </select>
 
-<label>What were they doing?</label>
-<input id="task" placeholder="e.g. Installing a loft hatch">
 
-<label>Observation notes</label>
-<textarea id="observation"
-placeholder="Write your quick notes here..."></textarea>
+<label>Level of detail</label>
+
+<select id="detail">
+
+<option value="standard">
+Standard – around 100 words
+</option>
+
+<option value="comprehensive">
+Comprehensive – around 180–250 words
+</option>
+
+</select>
+
+<div class="hint">
+
+The generator will only use information you enter.
+Blank sections will be ignored.
+
+</div>
+
+
+<label>What were they doing?</label>
+
+<input
+id="task"
+placeholder="e.g. Installing a loft hatch">
+
+
+<label>What did you observe?</label>
+
+<textarea
+id="observation"
+placeholder="Write your quick notes here...">
+</textarea>
+
+</div>
+
+
+<!-- ADDITIONAL OBSERVATIONS -->
+
+<div class="card">
+
+<h2>Additional observations</h2>
 
 <div class="grid">
 
+
 <div>
 
-<h2>What did they do well?</h2>
+<label>
+Planning and preparation
+</label>
 
-<input class="good"
+<textarea
+id="planning"
+placeholder="e.g. Planned the sequence of work before starting.">
+</textarea>
+
+
+<label>
+Drawings and specifications
+</label>
+
+<textarea
+id="drawings"
+placeholder="e.g. Referred to the drawings and checked dimensions before starting.">
+</textarea>
+
+
+<label>
+Tools and equipment
+</label>
+
+<textarea
+id="tools"
+placeholder="e.g. Selected and used the correct hand tools for the task.">
+</textarea>
+
+</div>
+
+
+<div>
+
+<label>
+Materials and fixings
+</label>
+
+<textarea
+id="materials"
+placeholder="e.g. Selected suitable timber and fixings for the work.">
+</textarea>
+
+
+<label>
+Health, safety and housekeeping
+</label>
+
+<textarea
+id="safety"
+placeholder="e.g. Maintained a safe working area and used the required PPE.">
+</textarea>
+
+
+<label>
+Quality, accuracy and finish
+</label>
+
+<textarea
+id="quality"
+placeholder="e.g. Work was accurate and finished to a good standard.">
+</textarea>
+
+</div>
+
+</div>
+
+
+<label>
+Communication, teamwork and industry terminology
+</label>
+
+<textarea
+id="communication"
+placeholder="e.g. Communicated clearly and used appropriate construction terminology.">
+</textarea>
+
+</div>
+
+
+<!-- GOOD / IMPROVEMENT -->
+
+<div class="card">
+
+<div class="grid">
+
+
+<div>
+
+<h2>
+What did they do well?
+</h2>
+
+<input
+class="good"
 placeholder="1. Good interpretation of drawings">
 
-<input class="good"
+<input
+class="good"
 placeholder="2. Accurate setting out">
 
-<input class="good"
+<input
+class="good"
 placeholder="3. Worked safely">
 
-<input class="good"
+<input
+class="good"
 placeholder="4. Good use of tools">
 
-<input class="good"
+<input
+class="good"
 placeholder="5. Good finish">
 
 </div>
 
+
 <div>
 
-<h2>Areas for improvement</h2>
+<h2>
+Areas for improvement
+</h2>
 
-<input class="improvement"
+<input
+class="improvement"
 placeholder="1. Check measurements">
 
-<input class="improvement"
+<input
+class="improvement"
 placeholder="2. Improve planning">
 
-<input class="improvement"
+<input
+class="improvement"
 placeholder="3. Use more industry terminology">
 
-<input class="improvement"
+<input
+class="improvement"
 placeholder="4. Improve accuracy">
 
-<input class="improvement"
+<input
+class="improvement"
 placeholder="5. Improve finishing">
 
 </div>
 
-</div>
 
 </div>
 
+</div>
+
+
+<!-- KSB -->
 
 <div class="card">
 
-<h2>KSBs evidenced</h2>
+<h2>
+KSBs evidenced
+</h2>
 
-<p>
-Optional – only select the KSBs you actually observed.
+<p class="hint">
+
+Optional – only select KSBs you actually observed.
+
 </p>
+
 
 <input
 id="ksbSearch"
 class="ksb-search"
 placeholder="Search KSBs e.g. drawings, tools, safety">
 
-<div id="ksbList" class="ksb-list"></div>
+
+<div
+id="ksbList"
+class="ksb-list">
+</div>
 
 </div>
 
+
+<!-- BUTTONS -->
 
 <div class="card">
 
 <div class="buttons">
 
-<button id="generateButton" class="generate" type="button">
+<button
+id="generateButton"
+class="generate"
+type="button">
+
 Generate Feedback
+
 </button>
 
-<button id="copyButton" type="button">
+
+<button
+id="copyButton"
+type="button">
+
 Copy
+
 </button>
 
-<button id="clearButton" type="button">
+
+<button
+id="clearButton"
+type="button">
+
 Clear
+
 </button>
 
 </div>
 
-<div id="message" class="message"></div>
+
+<div
+id="message"
+class="message">
+</div>
 
 </div>
 
+
+<!-- OUTPUT -->
 
 <div class="card">
 
-<h2>Generated Feedback</h2>
+<h2>
+Generated Feedback
+</h2>
 
-<div id="output" class="output">
+<div
+id="output"
+class="output">
+
 Your feedback will appear here.
+
 </div>
 
 </div>
+
 
 </div>
 
 
 <script>
 
+
+/* =========================================================
+   EPA FEEDBACK GENERATOR
+   ========================================================= */
+
 let mode = "observation";
 
 
-/* CURRENT SKILLS ENGLAND ST0264 KSBs */
+/* =========================================================
+   KSB INFORMATION
+   ========================================================= */
 
 const KSB = [
 
@@ -366,7 +615,6 @@ const KSB = [
 
 ["K40","Employment types, self-employment and employment, small business start-up principles and tax."],
 
-
 ["S1","Comply with health and safety regulations, standards and guidance."],
 
 ["S2","Identify and use safety control equipment including RPE, dust suppression, PPE and LEV."],
@@ -393,7 +641,6 @@ const KSB = [
 
 ["S13","Identify well-being support available to self and others."],
 
-
 ["B1","Put health, safety and wellbeing first."],
 
 ["B2","Consider the environment when using resources and carrying out processes."],
@@ -407,19 +654,24 @@ const KSB = [
 ];
 
 
-/* DISPLAY KSBs */
+/* =========================================================
+   DISPLAY KSBs
+   ========================================================= */
 
 function displayKSBs(search = "") {
 
-    const box = document.getElementById("ksbList");
+    const box =
+        document.getElementById("ksbList");
 
     box.innerHTML = "";
 
-    search = search.toLowerCase();
+    search =
+        search.toLowerCase();
 
     KSB.forEach(function(item) {
 
         const code = item[0];
+
         const description = item[1];
 
         if (
@@ -427,49 +679,200 @@ function displayKSBs(search = "") {
             description.toLowerCase().includes(search)
         ) {
 
-            const label = document.createElement("label");
+            const label =
+                document.createElement("label");
 
             label.className = "ksb";
 
             label.innerHTML =
-                '<input type="checkbox" value="' + code + '">' +
-                ' <strong>' + code + '</strong> – ' +
+                '<input type="checkbox" value="' +
+                code +
+                '"> <strong>' +
+                code +
+                '</strong> – ' +
                 description;
 
             box.appendChild(label);
-        }
 
-    });
-}
-
-
-/* GET NON-EMPTY INPUTS */
-
-function getValues(className) {
-
-    const boxes = document.querySelectorAll(className);
-
-    const values = [];
-
-    boxes.forEach(function(box) {
-
-        const value = box.value.trim();
-
-        if (value !== "") {
-            values.push(value);
         }
 
     });
 
-    return values;
 }
 
 
-/* MAKE LIST READ NATURALLY */
+/* =========================================================
+   GET INPUT VALUES
+   ========================================================= */
+
+function getValues(selector) {
+
+    return Array.from(
+        document.querySelectorAll(selector)
+    )
+    .map(function(box) {
+
+        return box.value.trim();
+
+    })
+    .filter(function(value) {
+
+        return value !== "";
+
+    });
+
+}
+
+
+function getText(id) {
+
+    return document
+        .getElementById(id)
+        .value
+        .trim();
+
+}
+
+
+/* =========================================================
+   SPAG / TEXT CLEANING
+   ========================================================= */
+
+/*
+This function tidies quick assessor notes without
+changing the meaning.
+
+It:
+- removes accidental spaces
+- adds capitalisation
+- adds punctuation where needed
+- prevents double punctuation
+*/
+
+function cleanText(text) {
+
+    if (!text) {
+        return "";
+    }
+
+    text =
+        text
+        .replace(/\s+/g, " ")
+        .trim();
+
+    if (!text) {
+        return "";
+    }
+
+    /*
+    Capitalise the first letter.
+    */
+
+    text =
+        text.charAt(0).toUpperCase() +
+        text.slice(1);
+
+    /*
+    Remove repeated punctuation.
+    */
+
+    text =
+        text.replace(/[.]{2,}/g, ".");
+
+    text =
+        text.replace(/\s+([,.!?])/g, "$1");
+
+    /*
+    Add a full stop if the note doesn't
+    already finish with punctuation.
+    */
+
+    if (!/[.!?]$/.test(text)) {
+
+        text += ".";
+
+    }
+
+    return text;
+
+}
+
+
+/*
+Turn a short assessor note into a more
+natural sentence after "demonstrated".
+*/
+
+function improvePhrase(text) {
+
+    text =
+        cleanText(text);
+
+    if (!text) {
+        return "";
+    }
+
+    /*
+    Avoid awkward phrases such as:
+    "demonstrated good finish."
+    */
+
+    const replacements = {
+
+        "Good interpretation of drawings.":
+        "a good interpretation of the drawings",
+
+        "Good understanding of drawings.":
+        "a good understanding of the drawings",
+
+        "Good use of tools.":
+        "good use of tools",
+
+        "Good use of hand tools.":
+        "good use of hand tools",
+
+        "Good use of power tools.":
+        "good use of power tools",
+
+        "Worked safely.":
+        "safe working practices",
+
+        "Good finish.":
+        "a good quality finish",
+
+        "Good quality finish.":
+        "a good quality finish",
+
+        "Accurate setting out.":
+        "accurate setting out",
+
+        "Accurate measurements.":
+        "accurate measurements"
+
+    };
+
+    if (replacements[text]) {
+
+        return replacements[text];
+
+    }
+
+    /*
+    Remove the full stop when used inside a list.
+    */
+
+    return text.replace(/[.!?]$/, "");
+
+}
+
+
+/* =========================================================
+   NATURAL LIST
+   ========================================================= */
 
 function naturalList(items) {
 
-    if (items.length === 0) {
+    if (!items.length) {
         return "";
     }
 
@@ -478,51 +881,123 @@ function naturalList(items) {
     }
 
     if (items.length === 2) {
-        return items[0] + " and " + items[1];
+        return items[0] +
+            " and " +
+            items[1];
     }
 
-    return items.slice(0, -1).join(", ") +
+    return items
+        .slice(0, -1)
+        .join(", ") +
         ", and " +
         items[items.length - 1];
+
 }
 
 
-/* PRONOUN */
+/* =========================================================
+   PRONOUNS
+   ========================================================= */
 
 function person(pronoun, name) {
 
-    if (pronoun === "he") return "He";
+    if (pronoun === "he") {
+        return "He";
+    }
 
-    if (pronoun === "she") return "She";
+    if (pronoun === "she") {
+        return "She";
+    }
 
-    if (pronoun === "they") return "They";
+    if (pronoun === "they") {
+        return "They";
+    }
 
     return name;
+
 }
 
 
-/* GENERATE */
+function lowerPerson(pronoun, name) {
+
+    return person(
+        pronoun,
+        name
+    ).toLowerCase();
+
+}
+
+
+/* =========================================================
+   GENERATE FEEDBACK
+   ========================================================= */
 
 function generateFeedback() {
 
     const name =
-        document.getElementById("name").value.trim() ||
+        getText("name") ||
         "The apprentice";
 
     const task =
-        document.getElementById("task").value.trim();
+        getText("task");
 
     const observation =
-        document.getElementById("observation").value.trim();
+        cleanText(
+            getText("observation")
+        );
+
+    const planning =
+        cleanText(
+            getText("planning")
+        );
+
+    const drawings =
+        cleanText(
+            getText("drawings")
+        );
+
+    const tools =
+        cleanText(
+            getText("tools")
+        );
+
+    const materials =
+        cleanText(
+            getText("materials")
+        );
+
+    const safety =
+        cleanText(
+            getText("safety")
+        );
+
+    const quality =
+        cleanText(
+            getText("quality")
+        );
+
+    const communication =
+        cleanText(
+            getText("communication")
+        );
 
     const pronoun =
-        document.getElementById("pronoun").value;
+        document
+        .getElementById("pronoun")
+        .value;
+
+    const detail =
+        document
+        .getElementById("detail")
+        .value;
 
     const good =
-        getValues(".good");
+        getValues(".good")
+        .map(improvePhrase);
 
     const improvements =
-        getValues(".improvement");
+        getValues(".improvement")
+        .map(improvePhrase);
 
 
     const selectedKSBs =
@@ -530,17 +1005,26 @@ function generateFeedback() {
             document.querySelectorAll(
                 "#ksbList input[type='checkbox']:checked"
             )
-        ).map(function(box) {
+        )
+        .map(function(box) {
+
             return box.value;
+
         });
 
 
-    let feedback = "";
+    let paragraphs = [];
 
 
-    if (task !== "") {
+    /* =====================================================
+       OPENING
+       ===================================================== */
 
-        feedback +=
+    let opening = "";
+
+    if (task) {
+
+        opening =
             name +
             " was assessed while carrying out " +
             task +
@@ -548,214 +1032,548 @@ function generateFeedback() {
 
     } else {
 
-        feedback +=
+        opening =
             name +
             " was observed during the assessment.";
 
     }
 
 
-    if (observation !== "") {
+    if (observation) {
 
-        feedback +=
+        opening +=
             " " +
             observation;
 
     }
 
 
-    if (good.length > 0) {
+    paragraphs.push(opening);
 
-        const goodText =
-            good.map(function(item) {
 
-                return item.charAt(0).toLowerCase() +
-                    item.slice(1);
+    /* =====================================================
+       STANDARD DETAIL
+       ===================================================== */
 
-            });
+    if (detail === "standard") {
 
-        feedback +=
-            " " +
-            person(pronoun, name) +
+        if (
+            planning ||
+            drawings ||
+            tools ||
+            materials ||
+            safety ||
+            quality ||
+            communication
+        ) {
+
+            let standardText = "";
+
+
+            if (planning) {
+
+                standardText +=
+                    planning + " ";
+
+            }
+
+
+            if (drawings) {
+
+                standardText +=
+                    drawings + " ";
+
+            }
+
+
+            if (tools) {
+
+                standardText +=
+                    tools + " ";
+
+            }
+
+
+            if (materials) {
+
+                standardText +=
+                    materials + " ";
+
+            }
+
+
+            if (safety) {
+
+                standardText +=
+                    safety + " ";
+
+            }
+
+
+            if (quality) {
+
+                standardText +=
+                    quality + " ";
+
+            }
+
+
+            if (communication) {
+
+                standardText +=
+                    communication;
+
+            }
+
+
+            standardText =
+                standardText.trim();
+
+            if (standardText) {
+
+                paragraphs.push(
+                    standardText
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* =====================================================
+       COMPREHENSIVE DETAIL
+       ===================================================== */
+
+    if (detail === "comprehensive") {
+
+
+        if (
+            planning ||
+            drawings ||
+            materials
+        ) {
+
+            let approach = [];
+
+            if (planning) {
+                approach.push(planning);
+            }
+
+            if (drawings) {
+                approach.push(drawings);
+            }
+
+            if (materials) {
+                approach.push(materials);
+            }
+
+
+            paragraphs.push(
+
+                person(
+                    pronoun,
+                    name
+                ) +
+                " approached the task in a structured manner. " +
+                approach.join(" ")
+
+            );
+
+        }
+
+
+        if (
+            tools ||
+            safety
+        ) {
+
+            let practical = [];
+
+            if (tools) {
+                practical.push(tools);
+            }
+
+            if (safety) {
+                practical.push(safety);
+            }
+
+
+            paragraphs.push(
+
+                person(
+                    pronoun,
+                    name
+                ) +
+                " demonstrated appropriate practical working methods. " +
+                practical.join(" ")
+
+            );
+
+        }
+
+
+        if (quality) {
+
+            paragraphs.push(
+
+                "The quality and accuracy of the completed work were considered during the assessment. " +
+                quality
+
+            );
+
+        }
+
+
+        if (communication) {
+
+            paragraphs.push(
+
+                "In relation to communication and working with others, " +
+                communication
+
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       WHAT THEY DID WELL
+       ===================================================== */
+
+    if (good.length) {
+
+        paragraphs.push(
+
+            person(
+                pronoun,
+                name
+            ) +
             " demonstrated " +
-            naturalList(goodText) +
-            ".";
+            naturalList(good) +
+            "."
+
+        );
 
     }
 
 
-    if (improvements.length > 0) {
+    /* =====================================================
+       AREAS FOR DEVELOPMENT
+       ===================================================== */
 
-        const improvementText =
-            improvements.map(function(item) {
+    if (improvements.length) {
 
-                return item.charAt(0).toLowerCase() +
-                    item.slice(1);
+        paragraphs.push(
 
-            });
+            "Areas for further development include " +
+            naturalList(improvements) +
+            "."
 
-        feedback +=
-            " Areas for further development include " +
-            naturalList(improvementText) +
-            ".";
+        );
 
     }
 
 
-    if (selectedKSBs.length > 0) {
+    /* =====================================================
+       KSBs
+       ===================================================== */
 
-        feedback +=
-            " KSBs evidenced: " +
+    if (selectedKSBs.length) {
+
+        paragraphs.push(
+
+            "KSBs evidenced: " +
             selectedKSBs.join(", ") +
-            ".";
+            "."
+
+        );
 
     }
 
+
+    /* =====================================================
+       FINAL FEEDBACK CLOSING
+       ===================================================== */
 
     if (mode === "feedback") {
 
-        feedback +=
-            " Overall, " +
-            person(pronoun, name).toLowerCase() +
-            " demonstrated their knowledge and practical skills during the assessment.";
+        let closing =
+            "Overall, " +
+            lowerPerson(
+                pronoun,
+                name
+            ) +
+            " demonstrated the knowledge and practical skills required during the assessment.";
+
+        if (good.length) {
+
+            closing +=
+                " The assessment provided clear evidence of the strengths identified above.";
+
+        }
+
+        if (improvements.length) {
+
+            closing +=
+                " The areas identified for further development should be considered as part of their continued professional development.";
+
+        }
+
+        paragraphs.push(
+            closing
+        );
 
     }
 
 
-    document.getElementById("output").textContent =
-        feedback;
+    /* =====================================================
+       FINAL SPAG CLEAN-UP
+       ===================================================== */
 
-    document.getElementById("message").textContent =
+    let finalText =
+        paragraphs
+        .map(function(paragraph) {
+
+            return paragraph
+                .replace(/\s+/g, " ")
+                .trim();
+
+        })
+        .filter(Boolean)
+        .join("\n\n");
+
+
+    document
+        .getElementById("output")
+        .textContent =
+        finalText;
+
+
+    document
+        .getElementById("message")
+        .textContent =
         "Feedback generated.";
 
 }
 
 
-/* COPY */
+/* =========================================================
+   COPY
+   ========================================================= */
 
 function copyFeedback() {
 
     const text =
-        document.getElementById("output").textContent;
+        document
+        .getElementById("output")
+        .textContent;
 
-    navigator.clipboard.writeText(text)
-        .then(function() {
+    if (
+        !text ||
+        text ===
+        "Your feedback will appear here."
+    ) {
 
-            document.getElementById("message").textContent =
+        return;
+
+    }
+
+
+    if (navigator.clipboard) {
+
+        navigator.clipboard
+            .writeText(text)
+            .then(function() {
+
+                document
+                .getElementById("message")
+                .textContent =
                 "Copied to clipboard.";
 
-        })
-        .catch(function() {
+            })
+            .catch(function() {
 
-            const box =
-                document.createElement("textarea");
+                fallbackCopy(text);
 
-            box.value = text;
+            });
 
-            document.body.appendChild(box);
+    } else {
 
-            box.select();
+        fallbackCopy(text);
 
-            document.execCommand("copy");
-
-            box.remove();
-
-            document.getElementById("message").textContent =
-                "Copied to clipboard.";
-
-        });
+    }
 
 }
 
 
-/* CLEAR */
+function fallbackCopy(text) {
+
+    const box =
+        document.createElement("textarea");
+
+    box.value = text;
+
+    document.body.appendChild(box);
+
+    box.select();
+
+    document.execCommand("copy");
+
+    box.remove();
+
+    document
+    .getElementById("message")
+    .textContent =
+    "Copied to clipboard.";
+
+}
+
+
+/* =========================================================
+   CLEAR
+   ========================================================= */
 
 function clearForm() {
 
-    document.querySelectorAll(
-        "input[type='text'], textarea"
-    ).forEach(function(box) {
+    document
+    .querySelectorAll("input")
+    .forEach(function(box) {
+
+        if (box.type === "checkbox") {
+
+            box.checked = false;
+
+        } else {
+
+            box.value = "";
+
+        }
+
+    });
+
+
+    document
+    .querySelectorAll("textarea")
+    .forEach(function(box) {
 
         box.value = "";
 
     });
 
 
-    document.querySelectorAll(
-        "#ksbList input[type='checkbox']"
-    ).forEach(function(box) {
-
-        box.checked = false;
-
-    });
+    document
+    .getElementById("pronoun")
+    .value = "name";
 
 
-    document.getElementById("output").textContent =
-        "Your feedback will appear here.";
+    document
+    .getElementById("detail")
+    .value = "standard";
 
-    document.getElementById("message").textContent =
-        "";
+
+    document
+    .getElementById("output")
+    .textContent =
+    "Your feedback will appear here.";
+
+
+    document
+    .getElementById("message")
+    .textContent =
+    "";
 
 }
 
 
-/* BUTTONS */
+/* =========================================================
+   MODE BUTTONS
+   ========================================================= */
 
 document
-    .getElementById("observationMode")
-    .addEventListener("click", function() {
+.getElementById("observationMode")
+.addEventListener(
+    "click",
+    function() {
 
         mode = "observation";
 
         this.classList.add("active");
 
         document
-            .getElementById("feedbackMode")
-            .classList.remove("active");
+        .getElementById("feedbackMode")
+        .classList.remove("active");
 
-    });
+    }
+);
 
 
 document
-    .getElementById("feedbackMode")
-    .addEventListener("click", function() {
+.getElementById("feedbackMode")
+.addEventListener(
+    "click",
+    function() {
 
         mode = "feedback";
 
         this.classList.add("active");
 
         document
-            .getElementById("observationMode")
-            .classList.remove("active");
+        .getElementById("observationMode")
+        .classList.remove("active");
 
-    });
+    }
+);
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+document
+.getElementById("generateButton")
+.addEventListener(
+    "click",
+    generateFeedback
+);
 
 
 document
-    .getElementById("generateButton")
-    .addEventListener("click", generateFeedback);
+.getElementById("copyButton")
+.addEventListener(
+    "click",
+    copyFeedback
+);
 
 
 document
-    .getElementById("copyButton")
-    .addEventListener("click", copyFeedback);
+.getElementById("clearButton")
+.addEventListener(
+    "click",
+    clearForm
+);
 
 
 document
-    .getElementById("clearButton")
-    .addEventListener("click", clearForm);
+.getElementById("ksbSearch")
+.addEventListener(
+    "input",
+    function() {
+
+        displayKSBs(
+            this.value
+        );
+
+    }
+);
 
 
-document
-    .getElementById("ksbSearch")
-    .addEventListener("input", function() {
-
-        displayKSBs(this.value);
-
-    });
-
-
-/* START */
+/* =========================================================
+   START
+   ========================================================= */
 
 displayKSBs();
 
