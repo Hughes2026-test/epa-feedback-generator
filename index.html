@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPA Feedback Generator</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+    color: #222;
+}
+
+header {
+    background: #17324d;
+    color: white;
+    padding: 22px;
+}
+
+header h1 {
+    margin: 0 0 5px;
+    font-size: 24px;
+}
+
+header p {
+    margin: 0;
+    opacity: 0.85;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h2 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.mode {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    border: 0;
+    border-radius: 7px;
+    padding: 12px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #e4e7eb;
+}
+
+.mode button {
+    flex: 1;
+}
+
+.mode button.active,
+.generate {
+    background: #17324d;
+    color: white;
+}
+
+.good {
+    border-left: 4px solid #3d8b5b;
+    margin-bottom: 8px;
+}
+
+.improvement {
+    border-left: 4px solid #c28728;
+    margin-bottom: 8px;
+}
+
+.ksb-search {
+    margin-bottom: 10px;
+}
+
+.ksb-list {
+    max-height: 450px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+}
+
+.ksb {
+    background: #f7f8fa;
+    padding: 9px;
+    border-radius: 6px;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.ksb input {
+    width: auto;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.output {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    padding: 18px;
+    border-radius: 8px;
+    line-height: 1.6;
+    min-height: 150px;
+    white-space: pre-wrap;
+}
+
+.message {
+    margin-top: 10px;
+    color: #555;
+}
+
+@media(max-width:700px) {
+    .grid,
+    .ksb-list {
+        grid-template-columns: 1fr;
+    }
+
+    .mode {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>EPA Feedback Generator</h1>
+    <p>ST0264 Carpentry and Joinery – Site Carpenter</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<div class="mode">
+    <button id="observationMode" class="active" type="button">
+        Observation
+    </button>
+
+    <button id="feedbackMode" type="button">
+        Final Feedback
+    </button>
+</div>
+
+<label>Apprentice name</label>
+<input id="name" placeholder="e.g. Benjamin Regan">
+
+<label>How should they be referred to?</label>
+<select id="pronoun">
+    <option value="name">Use their name</option>
+    <option value="he">He / him</option>
+    <option value="she">She / her</option>
+    <option value="they">They / them</option>
+</select>
+
+<label>What were they doing?</label>
+<input id="task" placeholder="e.g. Installing a loft hatch">
+
+<label>Observation notes</label>
+<textarea id="observation"
+placeholder="Write your quick notes here..."></textarea>
+
+<div class="grid">
+
+<div>
+
+<h2>What did they do well?</h2>
+
+<input class="good"
+placeholder="1. Good interpretation of drawings">
+
+<input class="good"
+placeholder="2. Accurate setting out">
+
+<input class="good"
+placeholder="3. Worked safely">
+
+<input class="good"
+placeholder="4. Good use of tools">
+
+<input class="good"
+placeholder="5. Good finish">
+
+</div>
+
+<div>
+
+<h2>Areas for improvement</h2>
+
+<input class="improvement"
+placeholder="1. Check measurements">
+
+<input class="improvement"
+placeholder="2. Improve planning">
+
+<input class="improvement"
+placeholder="3. Use more industry terminology">
+
+<input class="improvement"
+placeholder="4. Improve accuracy">
+
+<input class="improvement"
+placeholder="5. Improve finishing">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>KSBs evidenced</h2>
+
+<p>
+Optional – only select the KSBs you actually observed.
+</p>
+
+<input
+id="ksbSearch"
+class="ksb-search"
+placeholder="Search KSBs e.g. drawings, tools, safety">
+
+<div id="ksbList" class="ksb-list"></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="buttons">
+
+<button id="generateButton" class="generate" type="button">
+Generate Feedback
+</button>
+
+<button id="copyButton" type="button">
+Copy
+</button>
+
+<button id="clearButton" type="button">
+Clear
+</button>
+
+</div>
+
+<div id="message" class="message"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Generated Feedback</h2>
+
+<div id="output" class="output">
+Your feedback will appear here.
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let mode = "observation";
+
+
+/* CURRENT SKILLS ENGLAND ST0264 KSBs */
+
+const KSB = [
+
+["K1","Awareness of health and safety regulations, standards and guidance and their impact on the role."],
+
+["K2","Safety control equipment and how to use PPE, RPE and LEV."],
+
+["K3","Safe systems of work including site inductions, toolbox talks, risk assessments, method statements and hazard identification."],
+
+["K4","Impact of the sector on the environment including efficient use of resources, recycling, reuse, safe disposal and sustainable forestry."],
+
+["K5","Principles of building and modern methods of construction."],
+
+["K6","Basic principles of digital design and modelling systems."],
+
+["K7","Standards and regulations associated with carpentry activities including British Standards, Building Regulations and warranty provider standards."],
+
+["K8","Methods of interpreting and extracting relevant information from drawings and specifications."],
+
+["K9","Materials and their characteristics including home grown and imported timber and timber-based products."],
+
+["K10","Timber decay and repair methods including moisture content, wet rot, dry rot and insect attack."],
+
+["K11","Carpentry and joinery products and their purpose including mastics, preservatives, wood fillers, plastics and ironmongery."],
+
+["K12","Basic material estimation techniques, calculating lengths of timber, fixing requirements and producing cutting lists."],
+
+["K13","Verbal communication techniques and construction terminology."],
+
+["K14","Hand tool use and storage methods and techniques."],
+
+["K15","Hand tool maintenance and sharpening techniques."],
+
+["K16","Jig production techniques."],
+
+["K17","Power tool use and storage methods and techniques."],
+
+["K18","Principles of good team working."],
+
+["K19","Inclusion, equity and diversity in the workplace."],
+
+["K20","Well-being including mental and physical health considerations and accessing support."],
+
+["K40","Employment types, self-employment and employment, small business start-up principles and tax."],
+
+
+["S1","Comply with health and safety regulations, standards and guidance."],
+
+["S2","Identify and use safety control equipment including RPE, dust suppression, PPE and LEV."],
+
+["S3","Comply with environmental and sustainability regulations, standards and guidance and segregate resources for reuse, recycling and disposal."],
+
+["S4","Comply with industry regulations, standards and guidance."],
+
+["S5","Prepare and maintain a safe working area."],
+
+["S6","Interpret and use information from drawings and specifications."],
+
+["S7","Estimate required materials and produce a cutting list."],
+
+["S8","Verbally communicate with others using construction terminology."],
+
+["S9","Select, use and store hand tools."],
+
+["S10","Select, use and store power tools."],
+
+["S11","Maintain and sharpen hand tools."],
+
+["S12","Produce jigs."],
+
+["S13","Identify well-being support available to self and others."],
+
+
+["B1","Put health, safety and wellbeing first."],
+
+["B2","Consider the environment when using resources and carrying out processes."],
+
+["B3","Contribute to an inclusive and diverse culture."],
+
+["B4","Seek learning and development opportunities."],
+
+["B5","Team-focus to meet team goals including considering the wider build team."]
+
+];
+
+
+/* DISPLAY KSBs */
+
+function displayKSBs(search = "") {
+
+    const box = document.getElementById("ksbList");
+
+    box.innerHTML = "";
+
+    search = search.toLowerCase();
+
+    KSB.forEach(function(item) {
+
+        const code = item[0];
+        const description = item[1];
+
+        if (
+            code.toLowerCase().includes(search) ||
+            description.toLowerCase().includes(search)
+        ) {
+
+            const label = document.createElement("label");
+
+            label.className = "ksb";
+
+            label.innerHTML =
+                '<input type="checkbox" value="' + code + '">' +
+                ' <strong>' + code + '</strong> – ' +
+                description;
+
+            box.appendChild(label);
+        }
+
+    });
+}
+
+
+/* GET NON-EMPTY INPUTS */
+
+function getValues(className) {
+
+    const boxes = document.querySelectorAll(className);
+
+    const values = [];
+
+    boxes.forEach(function(box) {
+
+        const value = box.value.trim();
+
+        if (value !== "") {
+            values.push(value);
+        }
+
+    });
+
+    return values;
+}
+
+
+/* MAKE LIST READ NATURALLY */
+
+function naturalList(items) {
+
+    if (items.length === 0) {
+        return "";
+    }
+
+    if (items.length === 1) {
+        return items[0];
+    }
+
+    if (items.length === 2) {
+        return items[0] + " and " + items[1];
+    }
+
+    return items.slice(0, -1).join(", ") +
+        ", and " +
+        items[items.length - 1];
+}
+
+
+/* PRONOUN */
+
+function person(pronoun, name) {
+
+    if (pronoun === "he") return "He";
+
+    if (pronoun === "she") return "She";
+
+    if (pronoun === "they") return "They";
+
+    return name;
+}
+
+
+/* GENERATE */
+
+function generateFeedback() {
+
+    const name =
+        document.getElementById("name").value.trim() ||
+        "The apprentice";
+
+    const task =
+        document.getElementById("task").value.trim();
+
+    const observation =
+        document.getElementById("observation").value.trim();
+
+    const pronoun =
+        document.getElementById("pronoun").value;
+
+    const good =
+        getValues(".good");
+
+    const improvements =
+        getValues(".improvement");
+
+
+    const selectedKSBs =
+        Array.from(
+            document.querySelectorAll(
+                "#ksbList input[type='checkbox']:checked"
+            )
+        ).map(function(box) {
+            return box.value;
+        });
+
+
+    let feedback = "";
+
+
+    if (task !== "") {
+
+        feedback +=
+            name +
+            " was assessed while carrying out " +
+            task +
+            ".";
+
+    } else {
+
+        feedback +=
+            name +
+            " was observed during the assessment.";
+
+    }
+
+
+    if (observation !== "") {
+
+        feedback +=
+            " " +
+            observation;
+
+    }
+
+
+    if (good.length > 0) {
+
+        const goodText =
+            good.map(function(item) {
+
+                return item.charAt(0).toLowerCase() +
+                    item.slice(1);
+
+            });
+
+        feedback +=
+            " " +
+            person(pronoun, name) +
+            " demonstrated " +
+            naturalList(goodText) +
+            ".";
+
+    }
+
+
+    if (improvements.length > 0) {
+
+        const improvementText =
+            improvements.map(function(item) {
+
+                return item.charAt(0).toLowerCase() +
+                    item.slice(1);
+
+            });
+
+        feedback +=
+            " Areas for further development include " +
+            naturalList(improvementText) +
+            ".";
+
+    }
+
+
+    if (selectedKSBs.length > 0) {
+
+        feedback +=
+            " KSBs evidenced: " +
+            selectedKSBs.join(", ") +
+            ".";
+
+    }
+
+
+    if (mode === "feedback") {
+
+        feedback +=
+            " Overall, " +
+            person(pronoun, name).toLowerCase() +
+            " demonstrated their knowledge and practical skills during the assessment.";
+
+    }
+
+
+    document.getElementById("output").textContent =
+        feedback;
+
+    document.getElementById("message").textContent =
+        "Feedback generated.";
+
+}
+
+
+/* COPY */
+
+function copyFeedback() {
+
+    const text =
+        document.getElementById("output").textContent;
+
+    navigator.clipboard.writeText(text)
+        .then(function() {
+
+            document.getElementById("message").textContent =
+                "Copied to clipboard.";
+
+        })
+        .catch(function() {
+
+            const box =
+                document.createElement("textarea");
+
+            box.value = text;
+
+            document.body.appendChild(box);
+
+            box.select();
+
+            document.execCommand("copy");
+
+            box.remove();
+
+            document.getElementById("message").textContent =
+                "Copied to clipboard.";
+
+        });
+
+}
+
+
+/* CLEAR */
+
+function clearForm() {
+
+    document.querySelectorAll(
+        "input[type='text'], textarea"
+    ).forEach(function(box) {
+
+        box.value = "";
+
+    });
+
+
+    document.querySelectorAll(
+        "#ksbList input[type='checkbox']"
+    ).forEach(function(box) {
+
+        box.checked = false;
+
+    });
+
+
+    document.getElementById("output").textContent =
+        "Your feedback will appear here.";
+
+    document.getElementById("message").textContent =
+        "";
+
+}
+
+
+/* BUTTONS */
+
+document
+    .getElementById("observationMode")
+    .addEventListener("click", function() {
+
+        mode = "observation";
+
+        this.classList.add("active");
+
+        document
+            .getElementById("feedbackMode")
+            .classList.remove("active");
+
+    });
+
+
+document
+    .getElementById("feedbackMode")
+    .addEventListener("click", function() {
+
+        mode = "feedback";
+
+        this.classList.add("active");
+
+        document
+            .getElementById("observationMode")
+            .classList.remove("active");
+
+    });
+
+
+document
+    .getElementById("generateButton")
+    .addEventListener("click", generateFeedback);
+
+
+document
+    .getElementById("copyButton")
+    .addEventListener("click", copyFeedback);
+
+
+document
+    .getElementById("clearButton")
+    .addEventListener("click", clearForm);
+
+
+document
+    .getElementById("ksbSearch")
+    .addEventListener("input", function() {
+
+        displayKSBs(this.value);
+
+    });
+
+
+/* START */
+
+displayKSBs();
+
+</script>
+
+</body>
+</html>
