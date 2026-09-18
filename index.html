@@ -9,85 +9,97 @@
 
 <style>
 
+/* =========================
+   GLOBAL
+========================= */
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f2f4f7;
-    color: #222;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #eef6f8;
+    color: #26343b;
+    font-size: 14px;
 }
 
+
+/* =========================
+   HEADER
+========================= */
+
 header {
-    background: #17324d;
+    background: linear-gradient(135deg, #176b87, #218c9c);
     color: white;
-    padding: 22px;
+    padding: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
 }
 
 header h1 {
-    margin: 0 0 5px;
-    font-size: 24px;
+    margin: 0;
+    font-size: 25px;
+    font-weight: 700;
 }
 
 header p {
-    margin: 0;
-    opacity: 0.85;
+    margin: 5px 0 0;
+    font-size: 13px;
+    opacity: 0.9;
 }
 
+
+/* =========================
+   MAIN
+========================= */
+
 .container {
-    max-width: 1050px;
+    max-width: 1150px;
     margin: auto;
-    padding: 20px;
+    padding: 16px;
 }
+
+
+/* =========================
+   CARDS
+========================= */
 
 .card {
     background: white;
-    padding: 20px;
-    margin-bottom: 18px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 14px;
+    padding: 17px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 12px rgba(31,72,83,0.08);
+    border: 1px solid #dcebed;
 }
+
+
+/* =========================
+   HEADINGS
+========================= */
 
 h2 {
-    margin-top: 0;
-    font-size: 20px;
+    margin: 0;
+    font-size: 17px;
+    color: #176b87;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-top: 12px;
-    margin-bottom: 6px;
+h3 {
+    margin: 14px 0 7px;
+    font-size: 13px;
+    color: #39545d;
 }
 
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font-size: 15px;
-    font-family: Arial, sans-serif;
-}
 
-textarea {
-    min-height: 90px;
-    resize: vertical;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-}
+/* =========================
+   MODE BUTTONS
+========================= */
 
 .mode {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 7px;
+    margin-bottom: 13px;
 }
 
 .mode button {
@@ -96,93 +108,278 @@ textarea {
 
 button {
     border: 0;
-    border-radius: 7px;
-    padding: 12px 18px;
-    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-family: inherit;
+    font-weight: 600;
     cursor: pointer;
-    background: #e4e7eb;
+    background: #e8eef0;
+    color: #40545b;
+    transition: 0.15s;
 }
 
-.mode button.active,
-.generate {
-    background: #17324d;
+button:hover {
+    transform: translateY(-1px);
+}
+
+.mode button.active {
+    background: #176b87;
     color: white;
 }
 
+.generate {
+    background: #176b87;
+    color: white;
+}
+
+.generate:hover {
+    background: #125a72;
+}
+
+
+/* =========================
+   TOP INFORMATION
+========================= */
+
+.top {
+    display: grid;
+    grid-template-columns: 1.1fr .8fr .8fr 1.5fr;
+    gap: 10px;
+    align-items: end;
+}
+
+.field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #52666d;
+    margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #cbdadd;
+    border-radius: 8px;
+    padding: 9px 10px;
+    font-family: inherit;
+    font-size: 14px;
+    background: #fbfdfe;
+    color: #26343b;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #218c9c;
+    box-shadow: 0 0 0 3px rgba(33,140,156,0.12);
+}
+
+textarea {
+    min-height: 65px;
+    resize: vertical;
+}
+
+
+/* =========================
+   QUICK OBSERVATIONS
+========================= */
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 9px;
+}
+
+.small {
+    font-size: 11px;
+    color: #7a898e;
+}
+
+
+/* =========================
+   TICK BOXES
+========================= */
+
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+}
+
+.quick {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 9px;
+    background: #f4f9fa;
+    border: 1px solid #dcebed;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.25;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.quick:hover {
+    background: #e9f5f7;
+    border-color: #a9d5db;
+}
+
+.quick input {
+    width: auto;
+    margin: 0;
+    accent-color: #218c9c;
+}
+
+
+/* =========================
+   FREE TEXT
+========================= */
+
+.free-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.mini-input {
+    margin-bottom: 6px;
+}
+
 .good {
-    border-left: 4px solid #3d8b5b;
-    margin-bottom: 8px;
+    border-left: 4px solid #48a868;
 }
 
 .improvement {
-    border-left: 4px solid #c28728;
-    margin-bottom: 8px;
+    border-left: 4px solid #e1a33a;
+}
+
+
+/* =========================
+   KSB
+========================= */
+
+details summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    color: #176b87;
 }
 
 .ksb-search {
-    margin-bottom: 10px;
+    margin: 10px 0 7px;
 }
 
 .ksb-list {
-    max-height: 400px;
+    max-height: 240px;
     overflow-y: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 7px;
+    gap: 5px;
 }
 
 .ksb {
-    background: #f7f8fa;
-    padding: 9px;
-    border-radius: 6px;
+    display: block;
+    background: #f5f9fa;
+    padding: 7px;
+    border-radius: 7px;
+    font-size: 11px;
     font-weight: normal;
-    font-size: 14px;
 }
 
 .ksb input {
     width: auto;
+    accent-color: #218c9c;
 }
 
-.buttons {
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions {
     display: flex;
+    gap: 7px;
     flex-wrap: wrap;
-    gap: 8px;
 }
+
+.actions button {
+    min-width: 100px;
+}
+
+
+/* =========================
+   OUTPUT
+========================= */
 
 .output {
-    background: #fafafa;
-    border: 1px solid #ddd;
-    padding: 18px;
-    border-radius: 8px;
+    background: #f8fbfc;
+    border: 1px solid #d8e6e9;
+    border-radius: 10px;
+    padding: 16px;
     line-height: 1.65;
-    min-height: 180px;
+    min-height: 150px;
     white-space: pre-wrap;
 }
 
 .message {
-    margin-top: 10px;
-    color: #555;
+    margin-top: 9px;
+    color: #218c9c;
+    font-size: 12px;
+    font-weight: 600;
 }
 
-.hint {
-    font-size: 13px;
-    color: #666;
-    margin-top: 4px;
-}
 
-@media(max-width:800px) {
+/* =========================
+   RESPONSIVE
+========================= */
 
-    .grid,
-    .ksb-list {
+@media(max-width: 850px) {
+
+    .top {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .layout,
+    .free-grid {
         grid-template-columns: 1fr;
     }
 
 }
 
-@media(max-width:600px) {
+@media(max-width: 550px) {
+
+    .top,
+    .quick-grid,
+    .ksb-list {
+        grid-template-columns: 1fr;
+    }
 
     .mode {
         flex-direction: column;
+    }
+
+    .container {
+        padding: 8px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    header {
+        padding: 16px;
     }
 
 }
@@ -190,7 +387,9 @@ button {
 </style>
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -206,9 +405,12 @@ ST0264 Carpentry and Joinery – Site Carpenter
 <div class="container">
 
 
-<!-- MAIN INFORMATION -->
+<!-- =========================
+     MAIN INFORMATION
+========================= -->
 
 <div class="card">
+
 
 <div class="mode">
 
@@ -221,6 +423,7 @@ Observation
 
 </button>
 
+
 <button
 id="feedbackMode"
 type="button">
@@ -232,19 +435,104 @@ Final Feedback
 </div>
 
 
-<label>Apprentice name</label>
+<div
+class="field"
+style="margin-bottom:12px">
+
+<label>
+Subject / Unit being assessed
+</label>
+
+
+<select id="subject">
+
+<option value="overall">
+Full / Overall Assessment
+</option>
+
+<option value="health">
+Health & Safety
+</option>
+
+<option value="drawings">
+Drawings & Specifications
+</option>
+
+<option value="tools">
+Tools & Equipment
+</option>
+
+<option value="materials">
+Materials & Fixings
+</option>
+
+<option value="planning">
+Planning & Preparation
+</option>
+
+<option value="settingout">
+Setting Out
+</option>
+
+<option value="roof">
+Roof Construction
+</option>
+
+<option value="floor">
+Floor / Joist Construction
+</option>
+
+<option value="stairs">
+Stairs
+</option>
+
+<option value="doors">
+Doors & Windows
+</option>
+
+<option value="finishing">
+Finishing / Second Fix
+</option>
+
+<option value="communication">
+Communication & Teamwork
+</option>
+
+<option value="other">
+Other / Specific Unit
+</option>
+
+</select>
+
+</div>
+
+
+<div class="top">
+
+
+<div class="field">
+
+<label>
+Apprentice
+</label>
 
 <input
 id="name"
-placeholder="e.g. Benjamin Regan">
+placeholder="Name">
+
+</div>
 
 
-<label>How should they be referred to?</label>
+<div class="field">
+
+<label>
+Pronoun
+</label>
 
 <select id="pronoun">
 
 <option value="name">
-Use their name
+Name
 </option>
 
 <option value="he">
@@ -261,226 +549,717 @@ They / them
 
 </select>
 
+</div>
 
-<label>Level of detail</label>
+
+<div class="field">
+
+<label>
+Detail
+</label>
 
 <select id="detail">
 
 <option value="standard">
-Standard – around 100 words
+Standard
 </option>
 
 <option value="comprehensive">
-Comprehensive – around 180–250 words
+Comprehensive
 </option>
 
 </select>
 
-<div class="hint">
-
-The generator will only use information you enter.
-Blank sections will be ignored.
-
 </div>
 
 
-<label>What were they doing?</label>
+<div class="field">
+
+<label>
+Task
+</label>
 
 <input
 id="task"
 placeholder="e.g. Installing a loft hatch">
 
+</div>
 
-<label>What did you observe?</label>
+
+</div>
+
+
+<div
+class="field"
+style="margin-top:10px">
+
+<label>
+
+Quick notes
+
+<span class="small">
+— spelling, grammar and punctuation are polished automatically
+</span>
+
+</label>
+
 
 <textarea
 id="observation"
-placeholder="Write your quick notes here...">
+placeholder="Type your notes quickly here...">
 </textarea>
 
 </div>
 
 
-<!-- ADDITIONAL OBSERVATIONS -->
+</div>
+
+
+
+<!-- =========================
+     QUICK OBSERVATIONS
+========================= -->
+
+<div class="layout">
+
 
 <div class="card">
 
-<h2>Additional observations</h2>
 
-<div class="grid">
+<div class="section-title">
 
+<h2 id="quickTitle">
+Quick observations
+</h2>
 
-<div>
-
-<label>
-Planning and preparation
-</label>
-
-<textarea
-id="planning"
-placeholder="e.g. Planned the sequence of work before starting.">
-</textarea>
-
-
-<label>
-Drawings and specifications
-</label>
-
-<textarea
-id="drawings"
-placeholder="e.g. Referred to the drawings and checked dimensions before starting.">
-</textarea>
-
-
-<label>
-Tools and equipment
-</label>
-
-<textarea
-id="tools"
-placeholder="e.g. Selected and used the correct hand tools for the task.">
-</textarea>
+<span class="small">
+Tick what you actually saw
+</span>
 
 </div>
 
 
-<div>
+<div id="quickPanels">
 
-<label>
-Materials and fixings
+
+<div
+class="quick-section subject-panel panel-overall panel-planning panel-drawings">
+
+<h3>
+Planning & drawings
+</h3>
+
+
+<div class="quick-grid">
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="planned the sequence of work before starting">
+
+Planned work sequence
+
 </label>
 
-<textarea
-id="materials"
-placeholder="e.g. Selected suitable timber and fixings for the work.">
-</textarea>
 
+<label class="quick">
 
-<label>
-Health, safety and housekeeping
+<input
+type="checkbox"
+class="q"
+value="prepared the work area before commencing">
+
+Prepared work area
+
 </label>
 
-<textarea
-id="safety"
-placeholder="e.g. Maintained a safe working area and used the required PPE.">
-</textarea>
 
+<label class="quick">
 
-<label>
-Quality, accuracy and finish
+<input
+type="checkbox"
+class="q"
+value="referred to the relevant drawings">
+
+Referred to drawings
+
 </label>
 
-<textarea
-id="quality"
-placeholder="e.g. Work was accurate and finished to a good standard.">
-</textarea>
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="interpreted the drawing information correctly">
+
+Interpreted drawings correctly
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="checked dimensions before starting">
+
+Checked dimensions
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="transferred dimensions accurately from the drawings">
+
+Transferred dimensions accurately
+
+</label>
+
 
 </div>
 
 </div>
 
 
-<label>
-Communication, teamwork and industry terminology
+
+<div
+class="quick-section subject-panel panel-overall panel-tools">
+
+<h3>
+Tools & equipment
+</h3>
+
+
+<div class="quick-grid">
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="selected appropriate tools for the task">
+
+Selected correct tools
+
 </label>
 
-<textarea
-id="communication"
-placeholder="e.g. Communicated clearly and used appropriate construction terminology.">
-</textarea>
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="used hand tools correctly and safely">
+
+Used hand tools safely
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="used power tools correctly and safely">
+
+Used power tools safely
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="used measuring and setting-out equipment accurately">
+
+Accurate measuring / setting out
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="stored tools correctly after use">
+
+Stored tools correctly
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="maintained control of the tools throughout the task">
+
+Maintained tool control
+
+</label>
+
+
+</div>
 
 </div>
 
 
-<!-- GOOD / IMPROVEMENT -->
+
+<div
+class="quick-section subject-panel panel-overall panel-materials">
+
+<h3>
+Materials & fixings
+</h3>
+
+
+<div class="quick-grid">
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="selected suitable materials for the task">
+
+Suitable materials
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="selected appropriate fixings">
+
+Appropriate fixings
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="checked the condition and suitability of the materials">
+
+Checked material condition
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="used materials efficiently and minimised waste">
+
+Minimised waste
+
+</label>
+
+
+</div>
+
+</div>
+
+
+
+<div
+class="quick-section subject-panel panel-overall panel-health">
+
+<h3>
+Health, safety & housekeeping
+</h3>
+
+
+<div class="quick-grid">
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="maintained a safe working area throughout">
+
+Safe work area
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="used the required PPE">
+
+Used PPE
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="followed safe systems of work">
+
+Followed safe systems
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="identified and managed hazards appropriately">
+
+Managed hazards
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="kept the work area tidy and free from unnecessary hazards">
+
+Good housekeeping
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="used equipment in a safe and controlled manner">
+
+Controlled equipment use
+
+</label>
+
+
+</div>
+
+</div>
+
+
+
+<div
+class="quick-section subject-panel panel-overall panel-settingout panel-roof panel-floor panel-stairs panel-doors panel-finishing">
+
+<h3>
+Quality, accuracy & finish
+</h3>
+
+
+<div class="quick-grid">
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="set out the work accurately">
+
+Accurate setting out
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="worked within the required tolerances">
+
+Worked to tolerance
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="checked the work as it progressed">
+
+Checked work as it progressed
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="produced a good quality finish">
+
+Good quality finish
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="demonstrated good attention to detail">
+
+Good attention to detail
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="corrected minor issues where necessary">
+
+Corrected minor issues
+
+</label>
+
+
+</div>
+
+</div>
+
+
+
+<div
+class="quick-section subject-panel panel-overall panel-communication">
+
+<h3>
+Communication & teamwork
+</h3>
+
+
+<div class="quick-grid">
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="communicated clearly with others">
+
+Clear communication
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="used appropriate construction terminology">
+
+Industry terminology
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="asked appropriate questions when clarification was required">
+
+Asked appropriate questions
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="worked effectively with others">
+
+Worked effectively with others
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="responded appropriately to feedback">
+
+Responded to feedback
+
+</label>
+
+
+<label class="quick">
+
+<input
+type="checkbox"
+class="q"
+value="demonstrated a professional approach">
+
+Professional approach
+
+</label>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     QUALITY / EXTRA
+========================= -->
 
 <div class="card">
 
-<div class="grid">
+
+<div class="section-title">
+
+<h2>
+Quality & development
+</h2>
+
+<span class="small">
+Optional
+</span>
+
+</div>
+
+
+<h3>
+Good points
+</h3>
+
+
+<input
+class="good mini-input"
+placeholder="Good interpretation of drawings">
+
+
+<input
+class="good mini-input"
+placeholder="Accurate setting out">
+
+
+<input
+class="good mini-input"
+placeholder="Good use of tools">
+
+
+
+<h3>
+Areas for development
+</h3>
+
+
+<input
+class="improvement mini-input"
+placeholder="Could improve planning">
+
+
+<input
+class="improvement mini-input"
+placeholder="Check measurements">
+
+
+<input
+class="improvement mini-input"
+placeholder="Use more terminology">
+
+
+
+<label
+class="field">
+
+Additional assessor note
+
+<span class="small">
+optional
+</span>
+
+</label>
+
+
+<textarea
+id="extra"
+placeholder="Anything else worth including...">
+</textarea>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     KSBs
+========================= -->
+
+<details class="card">
+
+<summary>
+KSBs evidenced — optional
+</summary>
 
 
 <div>
-
-<h2>
-What did they do well?
-</h2>
-
-<input
-class="good"
-placeholder="1. Good interpretation of drawings">
-
-<input
-class="good"
-placeholder="2. Accurate setting out">
-
-<input
-class="good"
-placeholder="3. Worked safely">
-
-<input
-class="good"
-placeholder="4. Good use of tools">
-
-<input
-class="good"
-placeholder="5. Good finish">
-
-</div>
-
-
-<div>
-
-<h2>
-Areas for improvement
-</h2>
-
-<input
-class="improvement"
-placeholder="1. Check measurements">
-
-<input
-class="improvement"
-placeholder="2. Improve planning">
-
-<input
-class="improvement"
-placeholder="3. Use more industry terminology">
-
-<input
-class="improvement"
-placeholder="4. Improve accuracy">
-
-<input
-class="improvement"
-placeholder="5. Improve finishing">
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- KSB -->
-
-<div class="card">
-
-<h2>
-KSBs evidenced
-</h2>
-
-<p class="hint">
-
-Optional – only select KSBs you actually observed.
-
-</p>
-
 
 <input
 id="ksbSearch"
 class="ksb-search"
-placeholder="Search KSBs e.g. drawings, tools, safety">
+placeholder="Search: drawings, tools, safety, materials...">
 
 
 <div
@@ -490,12 +1269,19 @@ class="ksb-list">
 
 </div>
 
+</details>
 
-<!-- BUTTONS -->
+
+
+<!-- =========================
+     ACTIONS
+========================= -->
 
 <div class="card">
 
-<div class="buttons">
+
+<div class="actions">
+
 
 <button
 id="generateButton"
@@ -524,6 +1310,7 @@ Clear
 
 </button>
 
+
 </div>
 
 
@@ -532,16 +1319,30 @@ id="message"
 class="message">
 </div>
 
+
 </div>
 
 
-<!-- OUTPUT -->
+
+<!-- =========================
+     OUTPUT
+========================= -->
 
 <div class="card">
+
+
+<div class="section-title">
 
 <h2>
 Generated Feedback
 </h2>
+
+<span class="small">
+Polished for spelling, grammar & flow
+</span>
+
+</div>
+
 
 <div
 id="output"
@@ -551,25 +1352,27 @@ Your feedback will appear here.
 
 </div>
 
+
 </div>
 
 
 </div>
+
 
 
 <script>
 
 
-/* =========================================================
-   EPA FEEDBACK GENERATOR
-   ========================================================= */
+/* =========================
+   SETTINGS
+========================= */
 
 let mode = "observation";
 
 
-/* =========================================================
-   KSB INFORMATION
-   ========================================================= */
+/* =========================
+   KSBs
+========================= */
 
 const KSB = [
 
@@ -654,9 +1457,9 @@ const KSB = [
 ];
 
 
-/* =========================================================
-   DISPLAY KSBs
-   ========================================================= */
+/* =========================
+   KSB DISPLAY
+========================= */
 
 function displayKSBs(search = "") {
 
@@ -670,13 +1473,9 @@ function displayKSBs(search = "") {
 
     KSB.forEach(function(item) {
 
-        const code = item[0];
-
-        const description = item[1];
-
         if (
-            code.toLowerCase().includes(search) ||
-            description.toLowerCase().includes(search)
+            item[0].toLowerCase().includes(search) ||
+            item[1].toLowerCase().includes(search)
         ) {
 
             const label =
@@ -686,11 +1485,11 @@ function displayKSBs(search = "") {
 
             label.innerHTML =
                 '<input type="checkbox" value="' +
-                code +
+                item[0] +
                 '"> <strong>' +
-                code +
+                item[0] +
                 '</strong> – ' +
-                description;
+                item[1];
 
             box.appendChild(label);
 
@@ -701,55 +1500,94 @@ function displayKSBs(search = "") {
 }
 
 
-/* =========================================================
-   GET INPUT VALUES
-   ========================================================= */
+/* =========================
+   SUBJECT FILTER
+========================= */
 
-function getValues(selector) {
+function updateSubjectPanels() {
 
-    return Array.from(
-        document.querySelectorAll(selector)
-    )
-    .map(function(box) {
+    const subject =
+        document.getElementById("subject").value;
 
-        return box.value.trim();
+    document
+        .querySelectorAll(".quick-section")
+        .forEach(function(panel) {
 
-    })
-    .filter(function(value) {
+            const classes =
+                Array.from(panel.classList);
 
-        return value !== "";
+            const show =
+                subject === "overall" ||
+                classes.includes("panel-" + subject) ||
+                classes.includes("panel-overall");
 
-    });
+            panel.style.display =
+                show ? "" : "none";
+
+        });
+
+
+    const names = {
+
+        overall:
+        "Quick observations",
+
+        health:
+        "Health & safety observations",
+
+        drawings:
+        "Drawings & specifications",
+
+        tools:
+        "Tools & equipment",
+
+        materials:
+        "Materials & fixings",
+
+        planning:
+        "Planning & preparation",
+
+        settingout:
+        "Setting out",
+
+        roof:
+        "Roof construction",
+
+        floor:
+        "Floor / joist construction",
+
+        stairs:
+        "Stair construction",
+
+        doors:
+        "Doors & windows",
+
+        finishing:
+        "Finishing / second fix",
+
+        communication:
+        "Communication & teamwork",
+
+        other:
+        "Quick observations"
+
+    };
+
+
+    document
+        .getElementById("quickTitle")
+        .textContent =
+        names[subject] ||
+        "Quick observations";
 
 }
 
 
-function getText(id) {
+/* =========================
+   SPAG POLISHING
+========================= */
 
-    return document
-        .getElementById(id)
-        .value
-        .trim();
-
-}
-
-
-/* =========================================================
-   SPAG / TEXT CLEANING
-   ========================================================= */
-
-/*
-This function tidies quick assessor notes without
-changing the meaning.
-
-It:
-- removes accidental spaces
-- adds capitalisation
-- adds punctuation where needed
-- prevents double punctuation
-*/
-
-function cleanText(text) {
+function polish(text) {
 
     if (!text) {
         return "";
@@ -760,115 +1598,135 @@ function cleanText(text) {
         .replace(/\s+/g, " ")
         .trim();
 
-    if (!text) {
-        return "";
-    }
 
-    /*
-    Capitalise the first letter.
-    */
+    const fixes = [
+
+        [/\bteh\b/gi,"the"],
+
+        [/\bthier\b/gi,"their"],
+
+        [/\brecieve\b/gi,"receive"],
+
+        [/\bseperate\b/gi,"separate"],
+
+        [/\bdefinately\b/gi,"definitely"],
+
+        [/\bacurate\b/gi,"accurate"],
+
+        [/\bmeasurments\b/gi,"measurements"],
+
+        [/\binterpritation\b/gi,"interpretation"],
+
+        [/\binterperet\b/gi,"interpret"],
+
+        [/\bspecifcation\b/gi,"specification"],
+
+        [/\bdrawngs\b/gi,"drawings"],
+
+        [/\bsafty\b/gi,"safety"],
+
+        [/\bsaftey\b/gi,"safety"],
+
+        [/\bplaster board\b/gi,"plasterboard"],
+
+        [/\bcut list\b/gi,"cutting list"],
+
+        [/\bcuttinglist\b/gi,"cutting list"],
+
+        [/\bnewel\b/gi,"newel"],
+
+        [/\bjoist hangers\b/gi,"joist hangers"]
+
+    ];
+
+
+    fixes.forEach(function(fix) {
+
+        text =
+            text.replace(
+                fix[0],
+                fix[1]
+            );
+
+    });
+
+
+    text =
+        text.replace(
+            /\s+([,.!?;:])/g,
+            "$1"
+        );
+
+
+    text =
+        text.replace(
+            /([,.!?])\1+/g,
+            "$1"
+        );
+
 
     text =
         text.charAt(0).toUpperCase() +
         text.slice(1);
 
-    /*
-    Remove repeated punctuation.
-    */
 
-    text =
-        text.replace(/[.]{2,}/g, ".");
-
-    text =
-        text.replace(/\s+([,.!?])/g, "$1");
-
-    /*
-    Add a full stop if the note doesn't
-    already finish with punctuation.
-    */
-
-    if (!/[.!?]$/.test(text)) {
+    if (
+        !/[.!?]$/.test(text)
+    ) {
 
         text += ".";
 
     }
+
 
     return text;
 
 }
 
 
-/*
-Turn a short assessor note into a more
-natural sentence after "demonstrated".
-*/
+/* =========================
+   HELPERS
+========================= */
 
-function improvePhrase(text) {
+function cleanPhrase(text) {
 
-    text =
-        cleanText(text);
-
-    if (!text) {
-        return "";
-    }
-
-    /*
-    Avoid awkward phrases such as:
-    "demonstrated good finish."
-    */
-
-    const replacements = {
-
-        "Good interpretation of drawings.":
-        "a good interpretation of the drawings",
-
-        "Good understanding of drawings.":
-        "a good understanding of the drawings",
-
-        "Good use of tools.":
-        "good use of tools",
-
-        "Good use of hand tools.":
-        "good use of hand tools",
-
-        "Good use of power tools.":
-        "good use of power tools",
-
-        "Worked safely.":
-        "safe working practices",
-
-        "Good finish.":
-        "a good quality finish",
-
-        "Good quality finish.":
-        "a good quality finish",
-
-        "Accurate setting out.":
-        "accurate setting out",
-
-        "Accurate measurements.":
-        "accurate measurements"
-
-    };
-
-    if (replacements[text]) {
-
-        return replacements[text];
-
-    }
-
-    /*
-    Remove the full stop when used inside a list.
-    */
-
-    return text.replace(/[.!?]$/, "");
+    return polish(text)
+        .replace(/[.!?]$/, "")
+        .toLowerCase();
 
 }
 
 
-/* =========================================================
-   NATURAL LIST
-   ========================================================= */
+function getChecked() {
+
+    return Array.from(
+        document.querySelectorAll(
+            ".q:checked"
+        )
+    )
+    .map(function(box) {
+
+        return box.value;
+
+    });
+
+}
+
+
+function getInputs(selector) {
+
+    return Array.from(
+        document.querySelectorAll(selector)
+    )
+    .map(function(box) {
+
+        return polish(box.value);
+
+    })
+    .filter(Boolean);
+
+}
+
 
 function naturalList(items) {
 
@@ -881,13 +1739,15 @@ function naturalList(items) {
     }
 
     if (items.length === 2) {
+
         return items[0] +
             " and " +
             items[1];
+
     }
 
     return items
-        .slice(0, -1)
+        .slice(0,-1)
         .join(", ") +
         ", and " +
         items[items.length - 1];
@@ -895,11 +1755,7 @@ function naturalList(items) {
 }
 
 
-/* =========================================================
-   PRONOUNS
-   ========================================================= */
-
-function person(pronoun, name) {
+function person(pronoun,name) {
 
     if (pronoun === "he") {
         return "He";
@@ -918,92 +1774,77 @@ function person(pronoun, name) {
 }
 
 
-function lowerPerson(pronoun, name) {
+/* =========================
+   GENERATE
+========================= */
 
-    return person(
-        pronoun,
-        name
-    ).toLowerCase();
-
-}
-
-
-/* =========================================================
-   GENERATE FEEDBACK
-   ========================================================= */
-
-function generateFeedback() {
+function generate() {
 
     const name =
-        getText("name") ||
+        document.getElementById("name")
+        .value.trim() ||
         "The apprentice";
 
-    const task =
-        getText("task");
-
-    const observation =
-        cleanText(
-            getText("observation")
-        );
-
-    const planning =
-        cleanText(
-            getText("planning")
-        );
-
-    const drawings =
-        cleanText(
-            getText("drawings")
-        );
-
-    const tools =
-        cleanText(
-            getText("tools")
-        );
-
-    const materials =
-        cleanText(
-            getText("materials")
-        );
-
-    const safety =
-        cleanText(
-            getText("safety")
-        );
-
-    const quality =
-        cleanText(
-            getText("quality")
-        );
-
-    const communication =
-        cleanText(
-            getText("communication")
-        );
 
     const pronoun =
-        document
-        .getElementById("pronoun")
+        document.getElementById("pronoun")
         .value;
+
 
     const detail =
-        document
-        .getElementById("detail")
+        document.getElementById("detail")
         .value;
 
+
+    const subject =
+        document.getElementById("subject")
+        .value;
+
+
+    const task =
+        polish(
+            document
+            .getElementById("task")
+            .value
+        )
+        .replace(/[.!?]$/,"");
+
+
+    const notes =
+        polish(
+            document
+            .getElementById("observation")
+            .value
+        );
+
+
+    const extra =
+        polish(
+            document
+            .getElementById("extra")
+            .value
+        );
+
+
+    const checked =
+        getChecked()
+        .map(cleanPhrase);
+
+
     const good =
-        getValues(".good")
-        .map(improvePhrase);
+        getInputs(".good")
+        .map(cleanPhrase);
+
 
     const improvements =
-        getValues(".improvement")
-        .map(improvePhrase);
+        getInputs(".improvement")
+        .map(cleanPhrase);
 
 
-    const selectedKSBs =
+    const ksbs =
         Array.from(
             document.querySelectorAll(
-                "#ksbList input[type='checkbox']:checked"
+                "#ksbList input:checked"
             )
         )
         .map(function(box) {
@@ -1013,225 +1854,158 @@ function generateFeedback() {
         });
 
 
+    const p =
+        person(
+            pronoun,
+            name
+        );
+
+
+    const subjectNames = {
+
+        overall:
+        "the assessment",
+
+        health:
+        "health and safety",
+
+        drawings:
+        "drawings and specifications",
+
+        tools:
+        "tools and equipment",
+
+        materials:
+        "materials and fixings",
+
+        planning:
+        "planning and preparation",
+
+        settingout:
+        "setting out",
+
+        roof:
+        "roof construction",
+
+        floor:
+        "floor and joist construction",
+
+        stairs:
+        "stair construction",
+
+        doors:
+        "doors and windows",
+
+        finishing:
+        "finishing and second-fix work",
+
+        communication:
+        "communication and teamwork",
+
+        other:
+        "the specific unit"
+
+    };
+
+
+    const subjectName =
+        subjectNames[subject] ||
+        "the assessment";
+
+
     let paragraphs = [];
 
 
-    /* =====================================================
-       OPENING
-       ===================================================== */
-
-    let opening = "";
+    /* Opening */
 
     if (task) {
 
-        opening =
+        paragraphs.push(
+
             name +
             " was assessed while carrying out " +
             task +
-            ".";
+            "."
+
+        );
+
+    } else if (
+        subject !== "overall"
+    ) {
+
+        paragraphs.push(
+
+            name +
+            " was assessed in relation to " +
+            subjectName +
+            "."
+
+        );
 
     } else {
 
-        opening =
+        paragraphs.push(
+
             name +
-            " was observed during the assessment.";
+            " was observed during the assessment."
+
+        );
 
     }
 
 
-    if (observation) {
+    /* Notes */
 
-        opening +=
-            " " +
-            observation;
+    if (notes) {
+
+        paragraphs.push(
+            notes
+        );
 
     }
 
 
-    paragraphs.push(opening);
+    /* Tick boxes */
 
-
-    /* =====================================================
-       STANDARD DETAIL
-       ===================================================== */
-
-    if (detail === "standard") {
+    if (checked.length) {
 
         if (
-            planning ||
-            drawings ||
-            tools ||
-            materials ||
-            safety ||
-            quality ||
-            communication
+            detail === "comprehensive" &&
+            subject !== "overall"
         ) {
-
-            let standardText = "";
-
-
-            if (planning) {
-
-                standardText +=
-                    planning + " ";
-
-            }
-
-
-            if (drawings) {
-
-                standardText +=
-                    drawings + " ";
-
-            }
-
-
-            if (tools) {
-
-                standardText +=
-                    tools + " ";
-
-            }
-
-
-            if (materials) {
-
-                standardText +=
-                    materials + " ";
-
-            }
-
-
-            if (safety) {
-
-                standardText +=
-                    safety + " ";
-
-            }
-
-
-            if (quality) {
-
-                standardText +=
-                    quality + " ";
-
-            }
-
-
-            if (communication) {
-
-                standardText +=
-                    communication;
-
-            }
-
-
-            standardText =
-                standardText.trim();
-
-            if (standardText) {
-
-                paragraphs.push(
-                    standardText
-                );
-
-            }
-
-        }
-
-    }
-
-
-    /* =====================================================
-       COMPREHENSIVE DETAIL
-       ===================================================== */
-
-    if (detail === "comprehensive") {
-
-
-        if (
-            planning ||
-            drawings ||
-            materials
-        ) {
-
-            let approach = [];
-
-            if (planning) {
-                approach.push(planning);
-            }
-
-            if (drawings) {
-                approach.push(drawings);
-            }
-
-            if (materials) {
-                approach.push(materials);
-            }
-
 
             paragraphs.push(
 
-                person(
-                    pronoun,
-                    name
-                ) +
-                " approached the task in a structured manner. " +
-                approach.join(" ")
+                p +
+                " demonstrated " +
+                naturalList(checked) +
+                " in relation to " +
+                subjectName +
+                ", showing an appropriate approach to the requirements of the task."
 
             );
 
-        }
-
-
-        if (
-            tools ||
-            safety
+        } else if (
+            detail === "comprehensive"
         ) {
 
-            let practical = [];
-
-            if (tools) {
-                practical.push(tools);
-            }
-
-            if (safety) {
-                practical.push(safety);
-            }
-
-
             paragraphs.push(
 
-                person(
-                    pronoun,
-                    name
-                ) +
-                " demonstrated appropriate practical working methods. " +
-                practical.join(" ")
+                p +
+                " demonstrated " +
+                naturalList(checked) +
+                ", showing a structured approach to the task and an appropriate level of practical awareness."
 
             );
 
-        }
-
-
-        if (quality) {
+        } else {
 
             paragraphs.push(
 
-                "The quality and accuracy of the completed work were considered during the assessment. " +
-                quality
-
-            );
-
-        }
-
-
-        if (communication) {
-
-            paragraphs.push(
-
-                "In relation to communication and working with others, " +
-                communication
+                p +
+                " demonstrated " +
+                naturalList(checked) +
+                "."
 
             );
 
@@ -1240,19 +2014,14 @@ function generateFeedback() {
     }
 
 
-    /* =====================================================
-       WHAT THEY DID WELL
-       ===================================================== */
+    /* Good points */
 
     if (good.length) {
 
         paragraphs.push(
 
-            person(
-                pronoun,
-                name
-            ) +
-            " demonstrated " +
+            p +
+            " also demonstrated " +
             naturalList(good) +
             "."
 
@@ -1261,9 +2030,7 @@ function generateFeedback() {
     }
 
 
-    /* =====================================================
-       AREAS FOR DEVELOPMENT
-       ===================================================== */
+    /* Improvements */
 
     if (improvements.length) {
 
@@ -1278,16 +2045,25 @@ function generateFeedback() {
     }
 
 
-    /* =====================================================
-       KSBs
-       ===================================================== */
+    /* Extra */
 
-    if (selectedKSBs.length) {
+    if (extra) {
+
+        paragraphs.push(
+            extra
+        );
+
+    }
+
+
+    /* KSBs */
+
+    if (ksbs.length) {
 
         paragraphs.push(
 
             "KSBs evidenced: " +
-            selectedKSBs.join(", ") +
+            ksbs.join(", ") +
             "."
 
         );
@@ -1295,33 +2071,41 @@ function generateFeedback() {
     }
 
 
-    /* =====================================================
-       FINAL FEEDBACK CLOSING
-       ===================================================== */
+    /* Final feedback */
 
     if (mode === "feedback") {
 
         let closing =
-            "Overall, " +
-            lowerPerson(
-                pronoun,
-                name
-            ) +
-            " demonstrated the knowledge and practical skills required during the assessment.";
 
-        if (good.length) {
+            "Overall, " +
+            p.toLowerCase() +
+            " demonstrated the knowledge and practical skills required for " +
+            subjectName;
+
+
+        if (
+            good.length ||
+            checked.length
+        ) {
 
             closing +=
-                " The assessment provided clear evidence of the strengths identified above.";
+
+                ", with evidence of their ability to apply their learning in a practical setting";
 
         }
+
 
         if (improvements.length) {
 
             closing +=
-                " The areas identified for further development should be considered as part of their continued professional development.";
+
+                " while continuing to develop in the areas identified above";
 
         }
+
+
+        closing += ".";
+
 
         paragraphs.push(
             closing
@@ -1330,40 +2114,64 @@ function generateFeedback() {
     }
 
 
-    /* =====================================================
-       FINAL SPAG CLEAN-UP
-       ===================================================== */
+    /* Final polish */
 
-    let finalText =
+    const result =
+
         paragraphs
+        .filter(Boolean)
         .map(function(paragraph) {
 
-            return paragraph
-                .replace(/\s+/g, " ")
-                .trim();
+            return polish(
+                paragraph
+            );
 
         })
-        .filter(Boolean)
         .join("\n\n");
 
 
     document
         .getElementById("output")
         .textContent =
-        finalText;
+        result;
 
 
     document
         .getElementById("message")
         .textContent =
-        "Feedback generated.";
+        "Feedback generated and polished.";
 
 }
 
 
-/* =========================================================
+/* =========================
    COPY
-   ========================================================= */
+========================= */
+
+function fallbackCopy(text) {
+
+    const box =
+        document.createElement(
+            "textarea"
+        );
+
+    box.value = text;
+
+    document.body.appendChild(box);
+
+    box.select();
+
+    document.execCommand("copy");
+
+    box.remove();
+
+    document
+        .getElementById("message")
+        .textContent =
+        "Copied to clipboard.";
+
+}
+
 
 function copyFeedback() {
 
@@ -1371,6 +2179,7 @@ function copyFeedback() {
         document
         .getElementById("output")
         .textContent;
+
 
     if (
         !text ||
@@ -1386,20 +2195,20 @@ function copyFeedback() {
     if (navigator.clipboard) {
 
         navigator.clipboard
-            .writeText(text)
-            .then(function() {
+        .writeText(text)
+        .then(function() {
 
-                document
-                .getElementById("message")
-                .textContent =
-                "Copied to clipboard.";
+            document
+            .getElementById("message")
+            .textContent =
+            "Copied to clipboard.";
 
-            })
-            .catch(function() {
+        })
+        .catch(function() {
 
-                fallbackCopy(text);
+            fallbackCopy(text);
 
-            });
+        });
 
     } else {
 
@@ -1410,32 +2219,9 @@ function copyFeedback() {
 }
 
 
-function fallbackCopy(text) {
-
-    const box =
-        document.createElement("textarea");
-
-    box.value = text;
-
-    document.body.appendChild(box);
-
-    box.select();
-
-    document.execCommand("copy");
-
-    box.remove();
-
-    document
-    .getElementById("message")
-    .textContent =
-    "Copied to clipboard.";
-
-}
-
-
-/* =========================================================
+/* =========================
    CLEAR
-   ========================================================= */
+========================= */
 
 function clearForm() {
 
@@ -1443,7 +2229,9 @@ function clearForm() {
     .querySelectorAll("input")
     .forEach(function(box) {
 
-        if (box.type === "checkbox") {
+        if (
+            box.type === "checkbox"
+        ) {
 
             box.checked = false;
 
@@ -1476,6 +2264,11 @@ function clearForm() {
 
 
     document
+    .getElementById("subject")
+    .value = "overall";
+
+
+    document
     .getElementById("output")
     .textContent =
     "Your feedback will appear here.";
@@ -1486,96 +2279,101 @@ function clearForm() {
     .textContent =
     "";
 
+
+    updateSubjectPanels();
+
 }
 
 
-/* =========================================================
-   MODE BUTTONS
-   ========================================================= */
+/* =========================
+   MODE
+========================= */
 
 document
 .getElementById("observationMode")
-.addEventListener(
-    "click",
-    function() {
+.onclick = function() {
 
-        mode = "observation";
+    mode = "observation";
 
-        this.classList.add("active");
+    this.classList.add(
+        "active"
+    );
 
-        document
-        .getElementById("feedbackMode")
-        .classList.remove("active");
+    document
+    .getElementById("feedbackMode")
+    .classList.remove(
+        "active"
+    );
 
-    }
-);
+};
 
 
 document
 .getElementById("feedbackMode")
-.addEventListener(
-    "click",
-    function() {
+.onclick = function() {
 
-        mode = "feedback";
+    mode = "feedback";
 
-        this.classList.add("active");
+    this.classList.add(
+        "active"
+    );
 
-        document
-        .getElementById("observationMode")
-        .classList.remove("active");
+    document
+    .getElementById("observationMode")
+    .classList.remove(
+        "active"
+    );
 
-    }
-);
+};
 
 
-/* =========================================================
-   BUTTONS
-   ========================================================= */
+/* =========================
+   EVENTS
+========================= */
 
 document
 .getElementById("generateButton")
-.addEventListener(
-    "click",
-    generateFeedback
-);
+.onclick =
+generate;
 
 
 document
 .getElementById("copyButton")
-.addEventListener(
-    "click",
-    copyFeedback
-);
+.onclick =
+copyFeedback;
 
 
 document
 .getElementById("clearButton")
-.addEventListener(
-    "click",
-    clearForm
-);
+.onclick =
+clearForm;
 
 
 document
 .getElementById("ksbSearch")
-.addEventListener(
-    "input",
-    function() {
+.oninput =
+function() {
 
-        displayKSBs(
-            this.value
-        );
+    displayKSBs(
+        this.value
+    );
 
-    }
-);
+};
 
 
-/* =========================================================
+document
+.getElementById("subject")
+.onchange =
+updateSubjectPanels;
+
+
+/* =========================
    START
-   ========================================================= */
+========================= */
 
 displayKSBs();
+
+updateSubjectPanels();
 
 </script>
 
